@@ -4,13 +4,22 @@ from datetime import datetime
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 import telegram_send
+import argparse
 
 from scripts.amazon_product import Product
 
+parser = argparse.ArgumentParser(description='Amazon PS5 crawler.')
+parser.add_argument(
+    '-r',
+    '--raspi',
+    type=bool,
+    help='flag weather the crawler runs on a raspberry pi or not'
+)
+args = parser.parse_args()
+
 if __name__ == '__main__':
-    BASE_URL = 'https://www.amazon.com.br/PlayStation-Console-PlayStation%C2%AE5/dp/B088GNRX\
-        3J/ref=sr_1_1?__mk_pt_BR=%C3%85M%C3%85%C5%BD%C3%95%C3%91&dchild=1&keywords=ps5&qid=\
-        1613470308&sr=8-1'
+    # BASE_URL = 'https://www.amazon.com.br/PlayStation-Console-PlayStation%C2%AE5/dp/B088GNRX3J/ref\
+    #     =sr_1_1?__mk_pt_BR=%C3%85M%C3%85%C5%BD%C3%95%C3%91&dchild=1&keywords=ps5&qid=1613470308&sr=8-1'
     BASE_URL = 'https://www.amazon.com.br/God-War-Hits-PlayStation-4/dp/B07YT1GLV9/?_encoding=\
         UTF8&pd_rd_w=yRrM3&pf_rd_p=d2ea4cd9-b3fa-4bdb-ab83-24ca9c54ecbe&pf_rd_r=3JF03Z0NMXW0PXV\
         M86Z1&pd_rd_r=b592df2f-51e0-4fe5-8ccd-e6ff9930134e&pd_rd_wg=CLvfl&ref_=pd_gw_ci_mcx_mr_hp_d'
@@ -23,10 +32,13 @@ if __name__ == '__main__':
     chrome_options.add_argument("--disable-extensions")
     chrome_options.add_argument("--disable-gpu")
     chrome_options.add_argument("--no-sandbox")  # linux only
-    # chrome_options.add_argument("--headless")
 
-    driver = webdriver.Chrome(
-        executable_path=DRIVER_PATH, options=chrome_options)
+    if args.raspi:
+        chrome_options.add_argument("--headless")
+        driver = webdriver.Chrome(options=chrome_options)
+    else:
+        driver = webdriver.Chrome(
+            executable_path=DRIVER_PATH, options=chrome_options)
     driver.maximize_window()
     driver.implicitly_wait(10)
     driver.get(BASE_URL)
