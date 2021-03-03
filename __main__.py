@@ -18,11 +18,11 @@ parser.add_argument(
 args = parser.parse_args()
 
 if __name__ == '__main__':
-    # BASE_URL = 'https://www.amazon.com.br/PlayStation-Console-PlayStation%C2%AE5/dp/B088GNRX3J/ref\
-    #     =sr_1_1?__mk_pt_BR=%C3%85M%C3%85%C5%BD%C3%95%C3%91&dchild=1&keywords=ps5&qid=1613470308&sr=8-1'
-    BASE_URL = 'https://www.amazon.com.br/God-War-Hits-PlayStation-4/dp/B07YT1GLV9/?_encoding=\
-        UTF8&pd_rd_w=yRrM3&pf_rd_p=d2ea4cd9-b3fa-4bdb-ab83-24ca9c54ecbe&pf_rd_r=3JF03Z0NMXW0PXV\
-        M86Z1&pd_rd_r=b592df2f-51e0-4fe5-8ccd-e6ff9930134e&pd_rd_wg=CLvfl&ref_=pd_gw_ci_mcx_mr_hp_d'
+    BASE_URL = 'https://www.amazon.com.br/PlayStation-Console-PlayStation%C2%AE5/dp/B088GNRX3J/ref\
+        =sr_1_1?__mk_pt_BR=%C3%85M%C3%85%C5%BD%C3%95%C3%91&dchild=1&keywords=ps5&qid=1613470308&sr=8-1'
+    # BASE_URL = 'https://www.amazon.com.br/God-War-Hits-PlayStation-4/dp/B07YT1GLV9/?_encoding=\
+    #     UTF8&pd_rd_w=yRrM3&pf_rd_p=d2ea4cd9-b3fa-4bdb-ab83-24ca9c54ecbe&pf_rd_r=3JF03Z0NMXW0PXV\
+    #     M86Z1&pd_rd_r=b592df2f-51e0-4fe5-8ccd-e6ff9930134e&pd_rd_wg=CLvfl&ref_=pd_gw_ci_mcx_mr_hp_d'
 
     product = Product(BASE_URL)
 
