@@ -18,6 +18,8 @@ parser.add_argument(
 args = parser.parse_args()
 
 if __name__ == '__main__':
+    current_time = datetime.now().strftime('%d/%m/%Y %H:%M:%S')
+    print(f'{current_time} Início da operação')
     BASE_URL = 'https://www.amazon.com.br/PlayStation-Console-PlayStation%C2%AE5/dp/B088GNRX3J/ref\
         =sr_1_1?__mk_pt_BR=%C3%85M%C3%85%C5%BD%C3%95%C3%91&dchild=1&keywords=ps5&qid=1613470308&sr=8-1'
     # BASE_URL = 'https://www.amazon.com.br/God-War-Hits-PlayStation-4/dp/B07YT1GLV9/?_encoding=\
@@ -34,6 +36,7 @@ if __name__ == '__main__':
     chrome_options.add_argument("--no-sandbox")  # linux only
 
     if args.raspi:
+        print(f'{current_time} Operação headless em raspberry pi')
         chrome_options.add_argument("--headless")
         driver = webdriver.Chrome(options=chrome_options)
     else:
@@ -49,15 +52,19 @@ if __name__ == '__main__':
         driver, 'span', 'id', 'priceblock_ourprice')
 
     if not product.name:
-        telegram_send.send(
-            messages=["Ocorreu um erro ao buscar o produto, verificar no site"])
+        print(f'{current_time} Nome do produto não encontrado')
+        # telegram_send.send(
+        #     messages=["Ocorreu um erro ao buscar o produto, verificar no site"])
 
     if product.price:
         if product.name:
+            print(f'{current_time} Produto encontrado, enviando mensagem de alerta')
             telegram_send.send(messages=[
                 f"Produto {product.name} encontrado por {product.price} na \
                 url abaixo: \n\n {product.url}"])
         else:
+            print(
+                f'{current_time} Valor de produto encontrado, erro na busca pelo nome')
             telegram_send.send(messages=[
                 f"Produto encontrado por {product.price} na url abaixo: \n\n {product.url}"])
 
