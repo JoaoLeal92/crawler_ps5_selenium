@@ -19,6 +19,7 @@ args = parser.parse_args()
 
 if __name__ == '__main__':
     current_time = datetime.now().strftime('%d/%m/%Y %H:%M:%S')
+    print(f'-----------------------------------------------------------------')
     print(f'{current_time} Início da operação')
     BASE_URL = 'https://www.amazon.com.br/PlayStation-Console-PlayStation%C2%AE5/dp/B088GNRX3J/ref\
         =sr_1_1?__mk_pt_BR=%C3%85M%C3%85%C5%BD%C3%95%C3%91&dchild=1&keywords=ps5&qid=1613470308&sr=8-1'
