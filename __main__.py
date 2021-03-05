@@ -59,7 +59,7 @@ if __name__ == '__main__':
         # telegram_send.send(
         #     messages=["Ocorreu um erro ao buscar o produto, verificar no site"])
     else:
-        print(f'{current_time} Nome do produto encontrado com sucesso')
+        print(f'{current_time} Nome do produto encontrado com sucesso: {product.name}')
 
     if product.price:
         if product.name:
